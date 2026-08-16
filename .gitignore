@@ -1,0 +1,13 @@
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+# Vite-PWA
+/dev-dist/
+
+# Environment
+.env
+.env.local

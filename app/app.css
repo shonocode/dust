@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+html,
+body {
+  /* not h-screen/w-screen: 100vw includes the scrollbar and causes
+     horizontal overflow; dvh tracks the real mobile viewport */
+  @apply m-0 p-0 min-h-dvh w-full;
+}
+
+:root {
+  --terminal-green: rgb(0, 200, 0);
+  --terminal-bg: #0d0d0d;
+}
+
+body {
+  color: var(--terminal-green);
+  font-family: "VT323", monospace;
+  background-color: var(--terminal-bg);
+  text-shadow: 0 0 5px rgba(50, 200, 0, 0.7);
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+::selection {
+  color: var(--terminal-bg);
+  background-color: var(--terminal-green);
+}
+
+/* phosphor-green tint applied to all suspect photos */
+@utility crt-image {
+  filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(150%);
+}
+
+/* terminal-style form control shared by the filter panel and stats page */
+@utility terminal-input {
+  @apply p-2 bg-green-800/10 rounded border border-green-900/20;
+}
+
+/* screen flicker, applied to a fixed viewport-sized overlay (NOT the
+   scrolling content: animating the whole page promotes the full scroll
+   height to a compositor layer). steps(1) makes it jump, not fade. */
+@utility crt-flicker {
+  animation: crt-flicker 3s steps(1, end) infinite;
+}
+
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 0.03;
+  }
+  8% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.04;
+  }
+  27% {
+    opacity: 0.01;
+  }
+  36% {
+    opacity: 0.05;
+  }
+  44% {
+    opacity: 0;
+  }
+  57% {
+    opacity: 0.03;
+  }
+  63% {
+    opacity: 0;
+  }
+  78% {
+    opacity: 0.05;
+  }
+  89% {
+    opacity: 0.01;
+  }
+}
